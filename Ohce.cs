@@ -4,11 +4,13 @@ namespace OhceKata
 {
     public class Ohce
     {
-        private Time time;
+        private ITime time;
+        private IConsole console;
 
-        public Ohce(Time time)
+        public Ohce(ITime time, IConsole console)
         {
             this.time = time;
+            this.console = console; 
         }
 
         public string Name { get; set; }
@@ -18,12 +20,15 @@ namespace OhceKata
             throw new NotImplementedException();
         }
 
-        internal string Greeting(string name)
+        internal void Greeting(string name)
         {
             if (time.currentTime().Hour >= 6 && time.currentTime().Hour < 12)
-                return "¡Buenas días " + name + "!";
+                console.Print("¡Buenas días " + name + "!");
 
-            return "¡Buenas tardes " + name + "!";
+            if (time.currentTime().Hour >= 20 || time.currentTime().Hour < 6)
+                console.Print("¡Buenas noches " + name + "!");
+            
+            console.Print("¡Buenas tardes " + name + "!");
         }
     }
 }

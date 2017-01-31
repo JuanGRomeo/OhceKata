@@ -2,7 +2,7 @@
 
 namespace OhceKata
 {
-    public interface Time
+    public interface ITime
     {
         DateTime currentTime();
     }
