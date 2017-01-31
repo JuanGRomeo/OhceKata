@@ -67,8 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SampleTestShould.cs" />
+    <Compile Include="Ohce.cs" />
+    <Compile Include="OhceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Time.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
