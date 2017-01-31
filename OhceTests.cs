@@ -10,8 +10,6 @@ namespace OhceKata
 {
     public class OhceTest
     {
-
-        //1- Ohce should return Buenos Tardes and name When current time is between 12 and 20
         [Fact]
         public void Should_Return_Buenos_Tardes_And_Name_When_Current_Time_Is_Between_12_And_20()
         {
@@ -25,9 +23,20 @@ namespace OhceKata
             //Assert
             Assert.Equal("¡Buenas tardes Luis!", greeting);
         }
+        
+        [Fact]
+        public void Ohce_Should_Return_Buenos_Dias_And_Name_When_Current_Time_Is_Between_6_And_12()
+        {
+            //Arrange
+            Time time = new MorningTime();
+            Ohce ohce = new Ohce(time);
 
-        //2- Ohce should return Buenos Dias and name When current time is between 6 and 12
+            //Act
+            string greeting = ohce.Greeting("Luis");
 
+            //Assert
+            Assert.Equal("¡Buenas días Luis!", greeting);
+        }
         //3- Ohce should return Buenos Noches and name When current time is between 20 and 6
 
         //4- Ohce should return reverse input 
@@ -42,6 +51,15 @@ namespace OhceKata
         public DateTime currentTime()
         {
             return new DateTime(2017, 01, 31, 18, 00, 00);
+        }
+    }
+
+
+    internal class MorningTime : Time
+    {
+        public DateTime currentTime()
+        {
+            return new DateTime(2017, 01, 31, 9, 00, 00);
         }
     }
 }

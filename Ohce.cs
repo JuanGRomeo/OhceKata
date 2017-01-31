@@ -20,6 +20,9 @@ namespace OhceKata
 
         internal string Greeting(string name)
         {
+            if (time.currentTime().Hour >= 6 && time.currentTime().Hour < 12)
+                return "¡Buenas días " + name + "!";
+
             return "¡Buenas tardes " + name + "!";
         }
     }
