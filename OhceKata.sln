@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhceKata", "OhceKata.csproj", "{727FA40D-94D1-4A2C-9246-28304F8A4319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhceProgram", "..\OhceProgram\OhceProgram.csproj", "{ACE3B3A6-92D0-4479-9A4C-163DAF0799A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhceProgram", "OhceProgram\OhceProgram.csproj", "{8C4858C5-E4DA-4E01-8D71-651921F28E13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{727FA40D-94D1-4A2C-9246-28304F8A4319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{727FA40D-94D1-4A2C-9246-28304F8A4319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{727FA40D-94D1-4A2C-9246-28304F8A4319}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACE3B3A6-92D0-4479-9A4C-163DAF0799A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACE3B3A6-92D0-4479-9A4C-163DAF0799A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACE3B3A6-92D0-4479-9A4C-163DAF0799A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACE3B3A6-92D0-4479-9A4C-163DAF0799A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C4858C5-E4DA-4E01-8D71-651921F28E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C4858C5-E4DA-4E01-8D71-651921F28E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C4858C5-E4DA-4E01-8D71-651921F28E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C4858C5-E4DA-4E01-8D71-651921F28E13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
