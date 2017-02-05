@@ -9,5 +9,6 @@ namespace OhceKata
     public interface IConsole
     {
         void Print(string input);
+        string Read();
     }
 }

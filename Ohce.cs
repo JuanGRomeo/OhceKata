@@ -6,29 +6,50 @@ namespace OhceKata
     {
         private ITime time;
         private IConsole console;
-
-        public Ohce(ITime time, IConsole console)
-        {
-            this.time = time;
-            this.console = console; 
-        }
+        private Action exitAction;
 
         public string Name { get; set; }
 
-        public string Execute(string input)
+        public Ohce(ITime time, IConsole console, Action exitAction)
         {
-            throw new NotImplementedException();
+            this.time = time;
+            this.console = console;
+            this.exitAction = exitAction;
+        }        
+
+        public void Execute()
+        {
+            string input = console.Read();
+            string reversedInput = string.Empty;
+
+            if (input.Equals("Stop!"))
+            {
+                console.Print("Adios " + Name);
+                exitAction();                    
+                return;
+            }                
+
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            reversedInput = new String(charArray);
+
+            console.Print(reversedInput);
+
+            if (reversedInput.Equals(input))
+                console.Print("¡Bonita palabra!");
         }
 
-        internal void Greeting(string name)
+        public void Greet()
         {
+            Name = console.Read();
+
             if (time.currentTime().Hour >= 6 && time.currentTime().Hour < 12)
-                console.Print("¡Buenas días " + name + "!");
+                console.Print("¡Buenas días " + Name + "!");
 
             if (time.currentTime().Hour >= 20 || time.currentTime().Hour < 6)
-                console.Print("¡Buenas noches " + name + "!");
+                console.Print("¡Buenas noches " + Name + "!");
             
-            console.Print("¡Buenas tardes " + name + "!");
+            console.Print("¡Buenas tardes " + Name + "!");
         }
     }
 }

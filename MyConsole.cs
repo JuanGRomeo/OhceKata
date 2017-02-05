@@ -12,5 +12,10 @@ namespace OhceKata
         {
             Console.WriteLine(input);
         }
+
+        public string Read()
+        {
+            return Console.ReadLine();
+        }
     }
 }

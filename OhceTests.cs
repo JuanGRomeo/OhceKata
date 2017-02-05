@@ -17,10 +17,13 @@ namespace OhceKata
             //Arrange
             ITime time = new AfternoonTime();
             IConsole console = Substitute.For<IConsole>();
-            Ohce ohce = new Ohce(time, console);            
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);            
 
             //Act
-            ohce.Greeting("Luis");
+            ohce.Greet();
 
             //Assert
             console.Received().Print("¡Buenas tardes Luis!");
@@ -32,35 +35,84 @@ namespace OhceKata
             //Arrange
             ITime time = new MorningTime();
             IConsole console = Substitute.For<IConsole>();
-            Ohce ohce = new Ohce(time, console);
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
-            ohce.Greeting("Luis");
+            ohce.Greet();
 
             //Assert
             console.Received().Print("¡Buenas días Luis!");
         }
-        //3- Ohce should return Buenos Noches and name When current time is between 20 and 6
+
         [Fact]
         public void Ohce_Should_Return_Buenos_Noches_And_Name_When_Current_Time_Is_Between_20_And_6()
         {
             //Arrange
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            Ohce ohce = new Ohce(time, console);
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
-            ohce.Greeting("Luis");
+            ohce.Greet();
 
             //Assert
             console.Received().Print("¡Buenas noches Luis!");
         }
 
-        //4- Ohce should return reverse input 
+        [Fact]
+        public void Should_Return_Reversed_Input()
+        {
+            ITime time = new NightTime();
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            string command = "hola";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
+
+            ohce.Execute();
+
+            console.Received().Print("aloh");
+        }
 
         //5- Ohce should return reverse input and ¡Bonita palabra! When is Palindrome
+        [Fact]
+        public void Should_Return_Reversed_Input_When_is_Palindrome()
+        {
+            ITime time = new NightTime();
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            string command = "oto";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
 
-        //6- Ohce should return Adios + name When input is Stop! 
+            ohce.Execute();
+
+            console.Received().Print("oto");
+            console.Received().Print("¡Bonita palabra!");
+        }
+         
+        [Fact]
+        public void Should_Return_Adios_And_Name_When_Input_is_Stop()
+        {
+            ITime time = new NightTime();
+            IConsole console = Substitute.For<IConsole>();
+            string name = "Luis";
+            Action exitAction = Substitute.For<Action>();
+            string command = "Stop!";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction) { Name = name };
+
+            ohce.Execute();
+
+            console.Received().Print("Adios Luis");
+            Assert.Equal(exitAction.ReceivedCalls().Count(), 1);
+        }
     }    
 
     internal class AfternoonTime : ITime
