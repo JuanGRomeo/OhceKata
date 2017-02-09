@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Xunit;
 using NSubstitute;
+using Xunit.Extensions;
 
 namespace OhceKata
 {
@@ -20,7 +21,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command);
-            Ohce ohce = new Ohce(time, console, exitAction);            
+            Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
             ohce.Greet();
@@ -28,7 +29,7 @@ namespace OhceKata
             //Assert
             console.Received().Print("¡Buenas tardes Luis!");
         }
-        
+
         [Fact]
         public void Ohce_Should_Return_Buenos_Dias_And_Name_When_Current_Time_Is_Between_6_And_12()
         {
@@ -96,7 +97,7 @@ namespace OhceKata
             console.Received().Print("oto");
             console.Received().Print("¡Bonita palabra!");
         }
-         
+
         [Fact]
         public void Should_Return_Adios_And_Name_When_Input_is_Stop()
         {
@@ -112,12 +113,11 @@ namespace OhceKata
 
             console.Received().Print("Adios Luis");
             Assert.Equal(exitAction.ReceivedCalls().Count(), 1);
-        }
+        }        
 
-        [Fact]
-        public void Ohce_Should_PrintOnlyOnce_When_Current_Time_Is_Between_20_And_6()
+        [Theory, MemberData(nameof(getDateTimes))]
+        public void Ohce_Should_PrintOnlyOnce_At_AnyTime(ITime time)
         {
-            ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
@@ -129,36 +129,19 @@ namespace OhceKata
             console.Received(1).Print(Arg.Any<string>());
         }
 
-        [Fact]
-        public void Ohce_Should_PrintOnlyOnce_When_Current_Time_Is_Between_6_And_12()
+        public static IEnumerable<object[]> getDateTimes
         {
-            ITime time = new MorningTime();
-            IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
-            string command = "Luis";
-            console.Read().Returns(command);
-            Ohce ohce = new Ohce(time, console, exitAction);
-
-            ohce.Greet();
-
-            console.Received(1).Print(Arg.Any<string>());
+            get
+            {
+                return new[]
+                {
+                    new object[] { new MorningTime() },
+                    new object[] { new AfternoonTime() },
+                    new object[] { new NightTime() }
+                };
+            }
         }
-
-        [Fact]
-        public void Ohce_Should_PrintOnlyOnce_When_Current_Time_Is_Between_12_And_20()
-        {
-            ITime time = new AfternoonTime();
-            IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
-            string command = "Luis";
-            console.Read().Returns(command);
-            Ohce ohce = new Ohce(time, console, exitAction);
-
-            ohce.Greet();
-
-            console.Received(1).Print(Arg.Any<string>());
-        }
-    }    
+    }
 
     internal class AfternoonTime : ITime
     {
