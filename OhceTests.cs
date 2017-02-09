@@ -114,6 +114,21 @@ namespace OhceKata
             console.Received().Print("Adios Juan");
         }
 
+        [Fact]
+        public void Should_Process_All_Commands()
+        {
+            ITime time = new NightTime();
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            console.Read().Returns("Juan", "hola", "camion", "Stop!");
+            Ohce ohce = new Ohce(time, console, exitAction);
+
+            ohce.Run();
+
+            console.Received().Print("noimac");
+        }
+
+
         //[Theory, MemberData(nameof(getDateTimes))]        
         //public void Ohce_Should_PrintOnlyOnce_At_AnyTime(ITime time)
         //{

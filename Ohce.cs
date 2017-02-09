@@ -20,7 +20,14 @@ namespace OhceKata
         public void Run()
         {
             Greet();
-            Execute();
+
+            bool run = true;
+            exitAction = () => { run = false; };
+
+            while (run)
+            {
+                Execute();
+            }  
         }
 
         private void Greet()
