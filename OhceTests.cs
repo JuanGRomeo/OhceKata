@@ -113,6 +113,51 @@ namespace OhceKata
             console.Received().Print("Adios Luis");
             Assert.Equal(exitAction.ReceivedCalls().Count(), 1);
         }
+
+        [Fact]
+        public void Ohce_Should_PrintOnlyOnce_When_Current_Time_Is_Between_20_And_6()
+        {
+            ITime time = new NightTime();
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
+
+            ohce.Greet();
+
+            console.Received(1).Print(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void Ohce_Should_PrintOnlyOnce_When_Current_Time_Is_Between_6_And_12()
+        {
+            ITime time = new MorningTime();
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
+
+            ohce.Greet();
+
+            console.Received(1).Print(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void Ohce_Should_PrintOnlyOnce_When_Current_Time_Is_Between_12_And_20()
+        {
+            ITime time = new AfternoonTime();
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command);
+            Ohce ohce = new Ohce(time, console, exitAction);
+
+            ohce.Greet();
+
+            console.Received(1).Print(Arg.Any<string>());
+        }
     }    
 
     internal class AfternoonTime : ITime

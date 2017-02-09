@@ -44,10 +44,16 @@ namespace OhceKata
             Name = console.Read();
 
             if (time.currentTime().Hour >= 6 && time.currentTime().Hour < 12)
+            {
                 console.Print("¡Buenas días " + Name + "!");
+                return;
+            }
 
             if (time.currentTime().Hour >= 20 || time.currentTime().Hour < 6)
+            {
                 console.Print("¡Buenas noches " + Name + "!");
+                return;
+            }
             
             console.Print("¡Buenas tardes " + Name + "!");
         }
