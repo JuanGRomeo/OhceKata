@@ -128,20 +128,19 @@ namespace OhceKata
             console.Received().Print("noimac");
         }
 
+        [Theory, MemberData(nameof(getDateTimes))]
+        public void Ohce_Should_PrintOnlyOnce_At_AnyTime(ITime time)
+        {
+            IConsole console = Substitute.For<IConsole>();
+            Action exitAction = Substitute.For<Action>();
+            string command = "Luis";
+            console.Read().Returns(command, "Stop!");
+            Ohce ohce = new Ohce(time, console, exitAction);
 
-        //[Theory, MemberData(nameof(getDateTimes))]        
-        //public void Ohce_Should_PrintOnlyOnce_At_AnyTime(ITime time)
-        //{
-        //    IConsole console = Substitute.For<IConsole>();
-        //    Action exitAction = Substitute.For<Action>();
-        //    string command = "Luis";
-        //    console.Read().Returns(command, "stop!");
-        //    Ohce ohce = new Ohce(time, console, exitAction);
+            ohce.Run();
 
-        //    ohce.Run();
-
-        //    console.Received(1).Print(Arg.Any<string>());
-        //}
+            console.Received(2).Print(Arg.Any<string>());
+        }
 
         public static IEnumerable<object[]> getDateTimes
         {
