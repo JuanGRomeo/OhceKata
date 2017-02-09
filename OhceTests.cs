@@ -20,7 +20,7 @@ namespace OhceKata
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
-            console.Read().Returns(command);
+            console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
@@ -38,7 +38,7 @@ namespace OhceKata
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
-            console.Read().Returns(command);
+            console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
@@ -56,7 +56,7 @@ namespace OhceKata
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
-            console.Read().Returns(command);
+            console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
@@ -73,7 +73,7 @@ namespace OhceKata
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             string command = "hola";
-            console.Read().Returns("ohce", command);
+            console.Read().Returns("ohce", command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
 
             ohce.Run();
