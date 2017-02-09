@@ -129,7 +129,7 @@ namespace OhceKata
         }
 
         [Theory, MemberData(nameof(getDateTimes))]
-        public void Ohce_Should_PrintOnlyOnce_At_AnyTime(ITime time)
+        public void Ohce_Should_GreetOnlyOnce_At_AnyTime(ITime time)
         {
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
