@@ -15,33 +15,12 @@ namespace OhceKata
             this.time = time;
             this.console = console;
             this.exitAction = exitAction;
-        }        
-
-        public void Execute()
-        {
-            string input = console.Read();
-            string reversedInput = string.Empty;
-
-            if (input.Equals("Stop!"))
-            {
-                console.Print("Adios " + Name);
-                exitAction();                    
-                return;
-            }                
-
-            char[] charArray = input.ToCharArray();
-            Array.Reverse(charArray);
-            reversedInput = new String(charArray);
-
-            console.Print(reversedInput);
-
-            if (reversedInput.Equals(input))
-                console.Print("¡Bonita palabra!");
-        }
+        }  
 
         public void Run()
         {
             Greet();
+            Execute();
         }
 
         private void Greet()
@@ -61,6 +40,28 @@ namespace OhceKata
             }
             
             console.Print("¡Buenas tardes " + Name + "!");
+        }
+
+        private void Execute()
+        {
+            string input = console.Read();
+            string reversedInput = string.Empty;
+
+            if (input.Equals("Stop!"))
+            {
+                console.Print("Adios " + Name);
+                exitAction();
+                return;
+            }
+
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            reversedInput = new String(charArray);
+
+            console.Print(reversedInput);
+
+            if (reversedInput.Equals(input))
+                console.Print("¡Bonita palabra!");
         }
     }
 }
