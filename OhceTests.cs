@@ -24,7 +24,7 @@ namespace OhceKata
             Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
-            ohce.Greet();
+            ohce.Run();
 
             //Assert
             console.Received().Print("¡Buenas tardes Luis!");
@@ -42,7 +42,7 @@ namespace OhceKata
             Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
-            ohce.Greet();
+            ohce.Run();
 
             //Assert
             console.Received().Print("¡Buenas días Luis!");
@@ -60,7 +60,7 @@ namespace OhceKata
             Ohce ohce = new Ohce(time, console, exitAction);
 
             //Act
-            ohce.Greet();
+            ohce.Run();
 
             //Assert
             console.Received().Print("¡Buenas noches Luis!");
@@ -113,7 +113,7 @@ namespace OhceKata
 
             console.Received().Print("Adios Luis");
             Assert.Equal(exitAction.ReceivedCalls().Count(), 1);
-        }        
+        }
 
         [Theory, MemberData(nameof(getDateTimes))]
         public void Ohce_Should_PrintOnlyOnce_At_AnyTime(ITime time)
@@ -124,7 +124,7 @@ namespace OhceKata
             console.Read().Returns(command);
             Ohce ohce = new Ohce(time, console, exitAction);
 
-            ohce.Greet();
+            ohce.Run();
 
             console.Received(1).Print(Arg.Any<string>());
         }

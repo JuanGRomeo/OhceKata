@@ -39,7 +39,12 @@ namespace OhceKata
                 console.Print("¡Bonita palabra!");
         }
 
-        public void Greet()
+        public void Run()
+        {
+            Greet();
+        }
+
+        private void Greet()
         {
             Name = console.Read();
 

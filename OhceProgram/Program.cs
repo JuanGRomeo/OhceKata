@@ -17,12 +17,7 @@ namespace OhceProgram
             Action exitAction = () => { run = false; };
             Ohce ohce = new Ohce(time, console, exitAction);
 
-            ohce.Greet();
-
-            while (run)
-            {
-                ohce.Execute();
-            }
+            ohce.Run();
         }
     }
 }
