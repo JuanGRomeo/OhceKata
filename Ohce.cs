@@ -6,7 +6,7 @@ namespace OhceKata
     {
         private ITime time;
         private IConsole console;
-        private Action exitAction;
+        private bool run = true;
 
         public string Name { get; set; }
 
@@ -19,9 +19,6 @@ namespace OhceKata
         public void Run()
         {
             Greet();
-
-            bool run = true;
-            exitAction = () => { run = false; };
 
             while (run)
             {
@@ -56,7 +53,7 @@ namespace OhceKata
             if (input.Equals("Stop!"))
             {
                 console.Print("Adios " + Name);
-                exitAction();
+                run = false;
                 return;
             }
 
