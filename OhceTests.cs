@@ -17,7 +17,6 @@ namespace OhceKata
         {
             ITime time = new AfternoonTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console);
@@ -32,7 +31,6 @@ namespace OhceKata
         {
             ITime time = new MorningTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             string command = "Ohce Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console);
@@ -47,7 +45,6 @@ namespace OhceKata
         {
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console);
@@ -62,7 +59,6 @@ namespace OhceKata
         {
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             string command = "hola";
             console.Read().Returns("ohce", command, "Stop!");
             Ohce ohce = new Ohce(time, console);
@@ -77,7 +73,6 @@ namespace OhceKata
         {
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             console.Read().Returns("ohce Juan", "oto", "Stop!");
             Ohce ohce = new Ohce(time, console);
 
@@ -92,7 +87,6 @@ namespace OhceKata
         {
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             console.Read().Returns("Juan", "Stop!");
             Ohce ohce = new Ohce(time, console);
 
@@ -106,7 +100,6 @@ namespace OhceKata
         {
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             console.Read().Returns("Juan", "hola", "camion", "Stop!");
             Ohce ohce = new Ohce(time, console);
 
@@ -119,7 +112,6 @@ namespace OhceKata
         public void Ohce_Should_GreetOnlyOnce_At_AnyTime(ITime time, string greet)
         {
             IConsole console = Substitute.For<IConsole>();
-            Action exitAction = Substitute.For<Action>();
             string command = "Ohce Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console);
