@@ -108,7 +108,7 @@ namespace OhceKata
             console.Received().Print("noimac");
         }
 
-        [Theory, MemberData(nameof(getDateTimes))]
+        [Theory, MemberData(nameof(getTimeGreetings))]
         public void Ohce_Should_GreetOnlyOnce_At_AnyTime(ITime time, string greet)
         {
             IConsole console = Substitute.For<IConsole>();
@@ -121,7 +121,7 @@ namespace OhceKata
             console.Received(2).Print(Arg.Any<string>());
         }
 
-        [Theory, MemberData(nameof(getDateTimes))]
+        [Theory, MemberData(nameof(getTimeGreetings))]
         public void Ohce_Should_Greet_Ignoring_keyword_Ohce(ITime time, string greet)
         {
             IConsole console = Substitute.For<IConsole>();
@@ -133,7 +133,7 @@ namespace OhceKata
             console.Received().Print(greet);
         }
 
-        public static IEnumerable<object[]> getDateTimes
+        public static IEnumerable<object[]> getTimeGreetings
         {
             get
             {
