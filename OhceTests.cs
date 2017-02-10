@@ -33,13 +33,13 @@ namespace OhceKata
             ITime time = new MorningTime();
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
-            string command = "Luis";
+            string command = "Ohce Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
-            console.Received().Print("¡Buenas días Luis!");
+            console.Received().Print("¡Buenos días Luis!");
         }
 
         [Fact]
@@ -119,11 +119,11 @@ namespace OhceKata
         }
 
         [Theory, MemberData(nameof(getDateTimes))]
-        public void Ohce_Should_GreetOnlyOnce_At_AnyTime(ITime time)
+        public void Ohce_Should_GreetOnlyOnce_At_AnyTime(ITime time, string greet)
         {
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
-            string command = "Luis";
+            string command = "Ohce Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console);
 
@@ -132,15 +132,27 @@ namespace OhceKata
             console.Received(2).Print(Arg.Any<string>());
         }
 
+        [Theory, MemberData(nameof(getDateTimes))]
+        public void Ohce_Should_Greet_Ignoring_keyword_Ohce(ITime time, string greet)
+        {
+            IConsole console = Substitute.For<IConsole>();
+            console.Read().Returns("Ohce Luis", "Stop!");
+            Ohce ohce = new Ohce(time, console);             
+
+            ohce.Run();
+
+            console.Received().Print(greet);
+        }
+
         public static IEnumerable<object[]> getDateTimes
         {
             get
             {
                 return new[]
                 {
-                    new object[] { new MorningTime() },
-                    new object[] { new AfternoonTime() },
-                    new object[] { new NightTime() }
+                    new object[] { new MorningTime(), "¡Buenos días Luis!" },
+                    new object[] { new AfternoonTime(), "¡Buenas tardes Luis!" },
+                    new object[] { new NightTime(), "¡Buenas noches Luis!" }
                 };
             }
         }

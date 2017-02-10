@@ -31,11 +31,11 @@ namespace OhceKata
 
         private void Greet()
         {
-            Name = console.Read();
+            Name = console.Read().Replace("Ohce", "").Trim();
 
             if (time.currentTime().Hour >= 6 && time.currentTime().Hour < 12)
             {
-                console.Print("¡Buenas días " + Name + "!");
+                console.Print("¡Buenos días " + Name + "!");
                 return;
             }
 
