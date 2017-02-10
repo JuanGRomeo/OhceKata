@@ -78,7 +78,6 @@ namespace OhceKata
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
-            string command = "oto";
             console.Read().Returns("ohce Juan", "oto", "Stop!");
             Ohce ohce = new Ohce(time, console);
 
@@ -93,9 +92,7 @@ namespace OhceKata
         {
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
-            string name = "Luis";
             Action exitAction = Substitute.For<Action>();
-            string command = "Stop!";
             console.Read().Returns("Juan", "Stop!");
             Ohce ohce = new Ohce(time, console);
 
