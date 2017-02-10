@@ -15,25 +15,21 @@ namespace OhceKata
         [Fact]
         public void Should_Return_Buenos_Tardes_And_Name_When_Current_Time_Is_Between_12_And_20()
         {
-            //Arrange
             ITime time = new AfternoonTime();
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
-
-            //Act
+            
             ohce.Run();
-
-            //Assert
+            
             console.Received().Print("¡Buenas tardes Luis!");
         }
 
         [Fact]
         public void Ohce_Should_Return_Buenos_Dias_And_Name_When_Current_Time_Is_Between_6_And_12()
         {
-            //Arrange
             ITime time = new MorningTime();
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
@@ -41,17 +37,14 @@ namespace OhceKata
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
 
-            //Act
             ohce.Run();
 
-            //Assert
             console.Received().Print("¡Buenas días Luis!");
         }
 
         [Fact]
         public void Ohce_Should_Return_Buenos_Noches_And_Name_When_Current_Time_Is_Between_20_And_6()
         {
-            //Arrange
             ITime time = new NightTime();
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
@@ -59,10 +52,8 @@ namespace OhceKata
             console.Read().Returns(command, "Stop!");
             Ohce ohce = new Ohce(time, console, exitAction);
 
-            //Act
             ohce.Run();
 
-            //Assert
             console.Received().Print("¡Buenas noches Luis!");
         }
 
@@ -81,7 +72,6 @@ namespace OhceKata
             console.Received().Print("aloh");
         }
 
-        //5- Ohce should return reverse input and ¡Bonita palabra! When is Palindrome
         [Fact]
         public void Should_Return_Reversed_Input_When_is_Palindrome()
         {
