@@ -10,11 +10,10 @@ namespace OhceKata
 
         public string Name { get; set; }
 
-        public Ohce(ITime time, IConsole console, Action exitAction)
+        public Ohce(ITime time, IConsole console)
         {
             this.time = time;
             this.console = console;
-            this.exitAction = exitAction;
         }  
 
         public void Run()

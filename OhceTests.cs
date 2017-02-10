@@ -20,7 +20,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
             
             ohce.Run();
             
@@ -35,7 +35,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -50,7 +50,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -65,7 +65,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "hola";
             console.Read().Returns("ohce", command, "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -80,7 +80,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "oto";
             console.Read().Returns("ohce Juan", "oto", "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -97,7 +97,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "Stop!";
             console.Read().Returns("Juan", "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -111,7 +111,7 @@ namespace OhceKata
             IConsole console = Substitute.For<IConsole>();
             Action exitAction = Substitute.For<Action>();
             console.Read().Returns("Juan", "hola", "camion", "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -125,7 +125,7 @@ namespace OhceKata
             Action exitAction = Substitute.For<Action>();
             string command = "Luis";
             console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console, exitAction);
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
