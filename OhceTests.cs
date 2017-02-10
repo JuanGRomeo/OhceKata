@@ -109,7 +109,7 @@ namespace OhceKata
         }
 
         [Theory, MemberData(nameof(getTimeGreetings))]
-        public void Ohce_Should_GreetOnlyOnce_At_AnyTime(ITime time, string greet)
+        public void Ohce_Should_Greet_Only_Once_At_AnyTime(ITime time, string greet)
         {
             IConsole console = Substitute.For<IConsole>();
             string command = "Ohce Luis";
