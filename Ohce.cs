@@ -25,25 +25,27 @@ namespace OhceKata
         {
             Name = console.Read().Replace("Ohce", "").Trim();
 
+            console.Print("¡" + GetGreeting() + " " + Name + "!");
+        }
+
+        private string GetGreeting()
+        {
             if (time.currentTime().Hour >= 6 && time.currentTime().Hour < 12)
             {
-                console.Print("¡Buenos días " + Name + "!");
-                return;
+                return "Buenos días";                
             }
 
             if (time.currentTime().Hour >= 20 || time.currentTime().Hour < 6)
             {
-                console.Print("¡Buenas noches " + Name + "!");
-                return;
+                return "Buenas noches";
             }
-            
-            console.Print("¡Buenas tardes " + Name + "!");
+
+            return "Buenas tardes";
         }
 
         private bool Execute()
         {
             string input = console.Read();
-            string reversedInput = string.Empty;
 
             if (input.Equals("Stop!"))
             {
@@ -51,9 +53,7 @@ namespace OhceKata
                 return false;
             }
 
-            char[] charArray = input.ToCharArray();
-            Array.Reverse(charArray);
-            reversedInput = new String(charArray);
+            string reversedInput = Reverse(input);
 
             console.Print(reversedInput);
 
@@ -61,6 +61,13 @@ namespace OhceKata
                 console.Print("¡Bonita palabra!");
 
             return true;
+        }
+
+        private static string Reverse(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            return new String(charArray);
         }
     }
 }
