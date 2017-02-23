@@ -7,13 +7,17 @@ namespace OhceKata
         private ITime time;
         private IConsole console;
 
-        public string Name { get; set; }
+        public string Name { get; set; }        
 
         public Ohce(ITime time, IConsole console)
         {
             this.time = time;
             this.console = console;
-        }  
+        }
+
+        public Ohce(): this(new MyTime(), new MyConsole())
+        {
+        }
 
         public void Run()
         {

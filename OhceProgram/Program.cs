@@ -10,11 +10,8 @@ namespace OhceProgram
     public class Program
     {
         static void Main(string[] args)
-        {
-            MyTime time = new MyTime();
-            MyConsole console = new MyConsole();
-            Ohce ohce = new Ohce(time, console);
-
+        {            
+            Ohce ohce = new Ohce();
             ohce.Run();
         }
     }
