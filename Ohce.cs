@@ -6,7 +6,6 @@ namespace OhceKata
     {
         private ITime time;
         private IConsole console;
-        private bool run;
 
         public string Name { get; set; }
 
@@ -18,14 +17,8 @@ namespace OhceKata
 
         public void Run()
         {
-            this.run = true;
-
             Greet();
-
-            while (run)
-            {
-                Execute();
-            }  
+            while (Execute()); 
         }
 
         private void Greet()
@@ -47,7 +40,7 @@ namespace OhceKata
             console.Print("¡Buenas tardes " + Name + "!");
         }
 
-        private void Execute()
+        private bool Execute()
         {
             string input = console.Read();
             string reversedInput = string.Empty;
@@ -55,8 +48,7 @@ namespace OhceKata
             if (input.Equals("Stop!"))
             {
                 console.Print("Adios " + Name);
-                run = false;
-                return;
+                return false;
             }
 
             char[] charArray = input.ToCharArray();
@@ -67,6 +59,8 @@ namespace OhceKata
 
             if (reversedInput.Equals(input))
                 console.Print("¡Bonita palabra!");
+
+            return true;
         }
     }
 }
