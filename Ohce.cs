@@ -6,7 +6,7 @@ namespace OhceKata
     {
         private ITime time;
         private IConsole console;
-        private bool run = true;
+        private bool run;
 
         public string Name { get; set; }
 
@@ -18,6 +18,8 @@ namespace OhceKata
 
         public void Run()
         {
+            this.run = true;
+
             Greet();
 
             while (run)
