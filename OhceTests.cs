@@ -13,54 +13,19 @@ namespace OhceKata
     public class OhceTest
     {
         [Fact]
-        public void Should_Return_Buenos_Tardes_And_Name_When_Current_Time_Is_Between_12_And_20()
-        {
-            ITime time = new AfternoonTime();
-            IConsole console = Substitute.For<IConsole>();
-            string command = "Luis";
-            console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console);
-            
-            ohce.Run();
-            
-            console.Received().Print("¡Buenas tardes Luis!");
-        }
-
-        [Fact]
-        public void Ohce_Should_Return_Buenos_Dias_And_Name_When_Current_Time_Is_Between_6_And_12()
-        {
-            ITime time = new MorningTime();
-            IConsole console = Substitute.For<IConsole>();
-            string command = "Ohce Luis";
-            console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console);
-
-            ohce.Run();
-
-            console.Received().Print("¡Buenos días Luis!");
-        }
-
-        [Fact]
-        public void Ohce_Should_Return_Buenos_Noches_And_Name_When_Current_Time_Is_Between_20_And_6()
-        {
-            ITime time = new NightTime();
-            IConsole console = Substitute.For<IConsole>();
-            string command = "Luis";
-            console.Read().Returns(command, "Stop!");
-            Ohce ohce = new Ohce(time, console);
-
-            ohce.Run();
-
-            console.Received().Print("¡Buenas noches Luis!");
-        }
-
-        [Fact]
         public void Should_Return_Reversed_Input()
         {
             ITime time = new NightTime();
-            IConsole console = Substitute.For<IConsole>();
-            string command = "hola";
-            console.Read().Returns("ohce", command, "Stop!");
+
+            //IConsole console = Substitute.For<IConsole>();
+            //string command = "hola";
+            //console.Read().Returns("ohce", command, "Stop!");
+
+            IConsole console = new ConsoleMockedBuilder()
+                .AddCommand("Luis")
+                .AddCommand("hola")
+                .Build();
+
             Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
@@ -98,14 +63,15 @@ namespace OhceKata
         [Fact]
         public void Should_Process_All_Commands()
         {
-            ITime time = new NightTime();
+            ITime time = /**/new NightTime(); //Given a moment of Day
             IConsole console = Substitute.For<IConsole>();
             console.Read().Returns("Juan", "hola", "camion", "Stop!");
             Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
-            console.Received().Print("noimac");
+            //console.Received().Print("aloh");
+            console.Received().Print("noimac");            
         }
 
         [Theory, MemberData(nameof(getTimeGreetings))]
@@ -122,11 +88,13 @@ namespace OhceKata
         }
 
         [Theory, MemberData(nameof(getTimeGreetings))]
-        public void Ohce_Should_Greet_Ignoring_keyword_Ohce(ITime time, string greet)
+        public void Ohce_Should_Greet_Depending_On_Time(ITime time, string greet)
         {
-            IConsole console = Substitute.For<IConsole>();
-            console.Read().Returns("Ohce Luis", "Stop!");
-            Ohce ohce = new Ohce(time, console);             
+            IConsole console = new ConsoleMockedBuilder()
+                .AddCommand("Luis")
+                .Build();            
+
+            Ohce ohce = new Ohce(time, console);
 
             ohce.Run();
 
@@ -170,5 +138,33 @@ namespace OhceKata
         {
             return new DateTime(2017, 01, 31, 21, 00, 00);
         }
+    }
+
+    internal class ConsoleMockedBuilder
+    {
+        private IConsole console;
+        private Queue<string> commands = new Queue<string>();
+
+        public IConsole Build()
+        {
+            if (!commands.Contains("Stop!"))
+                commands.Enqueue("Stop!");
+
+            console = Substitute.For<IConsole>();
+            console.Read().Returns(commands.Dequeue(), commands.ToArray());
+            
+            return console;
+        }
+
+        public ConsoleMockedBuilder AddCommand(string command)
+        {
+            if (commands.Count == 0)
+            {
+                command = "Ohce " + command;
+            }
+
+            commands.Enqueue(command);
+            return this;
+        }        
     }
 }
