@@ -74,7 +74,7 @@ namespace OhceKata
             console.Received().Print("noimac");            
         }
 
-        [Theory, MemberData(nameof(getTimeGreetings))]
+        [Theory, MemberData(nameof(GetTimeGreetings))]
         public void Ohce_Should_Greet_Only_Once_At_AnyTime(ITime time, string greet)
         {
             IConsole console = Substitute.For<IConsole>();
@@ -87,8 +87,8 @@ namespace OhceKata
             console.Received(2).Print(Arg.Any<string>());
         }
 
-        [Theory, MemberData(nameof(getTimeGreetings))]
-        public void Ohce_Should_Greet_Depending_On_Time(ITime time, string greet)
+        [Theory, MemberData(nameof(GetTimeGreetings))]
+        public void Ohce_Should_Greet_Depending_On_Time(ITime time, string expectedGreet)
         {
             IConsole console = new ConsoleMockedBuilder()
                 .AddCommand("Luis")
@@ -98,10 +98,10 @@ namespace OhceKata
 
             ohce.Run();
 
-            console.Received().Print(greet);
+            console.Received().Print(expectedGreet);
         }
 
-        public static IEnumerable<object[]> getTimeGreetings
+        public static IEnumerable<object[]> GetTimeGreetings
         {
             get
             {
